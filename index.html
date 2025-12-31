@@ -3,40 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forums Wydad - Tableau Final CAN 2025</title>
+    <title>Forums Wydad - Pronos AFCON 2025</title>
     <style>
         :root { --wac-red: #e30613; --gold: #FFD700; --dark: #121212; }
         body { background: var(--dark); color: white; font-family: 'Arial', sans-serif; margin: 0; text-align: center; }
+        
+        /* Titre scotché en haut */
         header { background: var(--wac-red); padding: 15px; border-bottom: 4px solid var(--gold); position: sticky; top: 0; z-index: 100; }
+        header h1 { margin: 0; font-size: 1.4em; color: white; }
+        #user-display { font-size: 0.8em; color: var(--gold); margin-top: 5px; font-weight: bold; }
+
+        /* Ecran de Login */
         #login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-        .login-box { background: #222; padding: 30px; border-radius: 15px; border: 2px solid var(--wac-red); width: 85%; max-width: 400px; }
+        .login-box { background: #222; padding: 30px; border-radius: 15px; border: 2px solid var(--wac-red); width: 85%; max-width: 350px; }
+        
+        /* Conteneur des matchs */
         .bracket-container { display: flex; gap: 20px; padding: 20px; overflow-x: auto; align-items: flex-start; text-align: left; }
         .round { min-width: 260px; flex-shrink: 0; }
-        .round h2 { color: var(--gold); font-size: 1.1em; background: rgba(227, 6, 19, 0.2); padding: 10px; border-radius: 5px; text-align: center; }
+        .round h2 { color: var(--gold); font-size: 1em; background: rgba(227, 6, 19, 0.3); padding: 10px; border-radius: 5px; text-align: center; }
+        
         .match { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 10px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
         .team { display: flex; align-items: center; justify-content: space-between; margin: 5px 0; min-height: 35px; }
-        .team img { width: 25px; height: 18px; border-radius: 2px; margin-right: 10px; background: #333; }
-        .team span { flex-grow: 1; font-size: 0.9em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .score { width: 35px; background: #333; border: 1px solid var(--wac-red); color: white; text-align: center; border-radius: 4px; font-weight: bold; }
-        .champion-box { border: 2px solid var(--gold); background: linear-gradient(145deg, #222, #000); text-align: center; padding: 20px; border-radius: 15px; }
-        button { background: var(--wac-red); color: white; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; margin: 20px; }
+        .team img { width: 25px; height: 18px; border-radius: 2px; margin-right: 10px; }
+        .team span { flex-grow: 1; font-size: 0.9em; }
+        .score { width: 35px; background: #333; border: 1px solid var(--wac-red); color: white; text-align: center; border-radius: 4px; font-weight: bold; padding: 4px; }
+        
+        .champion-box { border: 2px solid var(--gold); background: #000; text-align: center; padding: 20px; border-radius: 15px; margin-top: 20px; }
+        button { background: var(--wac-red); color: white; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div id="login-screen">
         <div class="login-box">
-            <h2 style="color: var(--wac-red);">FORUMS WYDAD</h2>
-            <p>Pseudo Wydadi :</p>
-            <input type="text" id="username" placeholder="Ton pseudo..." style="padding: 12px; width: 80%; border-radius: 8px; border: none;">
-            <br><br>
+            <h2 style="color: var(--wac-red); margin-top:0;">FORUMS WYDAD</h2>
+            <p>Entrez votre pseudo pour parier :</p>
+            <input type="text" id="username" placeholder="Pseudo..." style="padding: 12px; width: 85%; border-radius: 8px; border: none; margin-bottom: 20px;">
+            <br>
             <button onclick="login()">ACCÉDER AU TABLEAU</button>
         </div>
     </div>
 
     <header>
-        <h1 style="margin:0">FORUMS WYDAD</h1>
-        <div id="user-display" style="font-size: 0.9em; color: var(--gold); margin-top:5px;">CAN 2025 - MAROC</div>
+        <h1>FORUMS WYDAD</h1>
+        <div id="user-display">PRONOS CAN 2025</div>
     </header>
 
     <div class="bracket-container">
@@ -56,18 +66,4 @@
             </div>
             <div class="match">
                 <div class="team" id="m4_1"><img src="https://flagcdn.com/ci.svg"><span>Côte d'Iv.</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
-                <div class="team" id="m4_2"><img src="https://flagcdn.com/bf.svg"><span>Burkina</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
-            </div>
-            <div class="match">
-                <div class="team" id="m5_1"><img src="https://flagcdn.com/dz.svg"><span>Algérie</span><input type="number" class="score" oninput="up('m5_1','m5_2','q3_t1')"></div>
-                <div class="team" id="m5_2"><img src="https://flagcdn.com/cd.svg"><span>RD Congo</span><input type="number" class="score" oninput="up('m5_1','m5_2','q3_t1')"></div>
-            </div>
-            <div class="match">
-                <div class="team" id="m6_1"><img src="https://flagcdn.com/ng.svg"><span>Nigeria</span><input type="number" class="score" oninput="up('m6_1','m6_2','q3_t2')"></div>
-                <div class="team" id="m6_2"><img src="https://flagcdn.com/ao.svg"><span>Angola</span><input type="number" class="score" oninput="up('m6_1','m6_2','q3_t2')"></div>
-            </div>
-            <div class="match">
-                <div class="team" id="m7_1"><img src="https://flagcdn.com/tn.svg"><span>Tunisie</span><input type="number" class="score" oninput="up('m7_1','m7_2','q4_t1')"></div>
-                <div class="team" id="m7_2"><img src="https://flagcdn.com/cm.svg"><span>Cameroun</span><input type="number" class="score" oninput="up('m7_1','m7_2','q4_t1')"></div>
-            </div>
 
