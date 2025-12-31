@@ -3,32 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forums Wydad - Pronos AFCON 2025</title>
+    <title>Forums Wydad - AFCON 2025</title>
     <style>
         :root { --wac-red: #e30613; --gold: #FFD700; --dark: #121212; }
-        body { background: var(--dark); color: white; font-family: 'Arial', sans-serif; margin: 0; text-align: center; }
+        body { background: var(--dark); color: white; font-family: sans-serif; margin: 0; text-align: center; }
+        header { background: var(--wac-red); padding: 15px; border-bottom: 3px solid var(--gold); position: sticky; top: 0; z-index: 100; }
         
-        /* Titre scotché en haut */
-        header { background: var(--wac-red); padding: 15px; border-bottom: 4px solid var(--gold); position: sticky; top: 0; z-index: 100; }
-        header h1 { margin: 0; font-size: 1.4em; color: white; }
-        #user-display { font-size: 0.8em; color: var(--gold); margin-top: 5px; font-weight: bold; }
-
-        /* Ecran de Login */
+        /* Login qui s'efface au clic sur le bouton */
         #login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); display: flex; justify-content: center; align-items: center; z-index: 1000; }
         .login-box { background: #222; padding: 30px; border-radius: 15px; border: 2px solid var(--wac-red); width: 85%; max-width: 350px; }
         
-        /* Conteneur des matchs */
-        .bracket-container { display: flex; gap: 20px; padding: 20px; overflow-x: auto; align-items: flex-start; text-align: left; }
+        .bracket { display: flex; gap: 20px; padding: 20px; overflow-x: auto; align-items: flex-start; text-align: left; }
         .round { min-width: 260px; flex-shrink: 0; }
         .round h2 { color: var(--gold); font-size: 1em; background: rgba(227, 6, 19, 0.3); padding: 10px; border-radius: 5px; text-align: center; }
         
-        .match { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 10px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .match { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 10px; margin-bottom: 15px; }
         .team { display: flex; align-items: center; justify-content: space-between; margin: 5px 0; min-height: 35px; }
-        .team img { width: 25px; height: 18px; border-radius: 2px; margin-right: 10px; }
+        .team img { width: 25px; height: 18px; border-radius: 2px; margin-right: 10px; display: none; }
         .team span { flex-grow: 1; font-size: 0.9em; }
-        .score { width: 35px; background: #333; border: 1px solid var(--wac-red); color: white; text-align: center; border-radius: 4px; font-weight: bold; padding: 4px; }
+        .score { width: 35px; background: #333; border: 1px solid var(--wac-red); color: white; text-align: center; border-radius: 4px; font-weight: bold; }
         
-        .champion-box { border: 2px solid var(--gold); background: #000; text-align: center; padding: 20px; border-radius: 15px; margin-top: 20px; }
+        .champion-box { border: 2px solid var(--gold); background: #000; text-align: center; padding: 20px; border-radius: 15px; }
         button { background: var(--wac-red); color: white; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; }
     </style>
 </head>
@@ -36,34 +31,79 @@
 
     <div id="login-screen">
         <div class="login-box">
-            <h2 style="color: var(--wac-red); margin-top:0;">FORUMS WYDAD</h2>
-            <p>Entrez votre pseudo pour parier :</p>
-            <input type="text" id="username" placeholder="Pseudo..." style="padding: 12px; width: 85%; border-radius: 8px; border: none; margin-bottom: 20px;">
+            <h2 style="color: var(--wac-red);">FORUMS WYDAD</h2>
+            <p>Entrez votre pseudo :</p>
+            <input type="text" id="pseudo" style="padding: 10px; width: 80%; border-radius: 5px; border: none; margin-bottom: 20px;">
             <br>
-            <button onclick="login()">ACCÉDER AU TABLEAU</button>
+            <button onclick="document.getElementById('login-screen').style.display='none'">ACCÉDER AU TABLEAU</button>
         </div>
     </div>
 
     <header>
-        <h1>FORUMS WYDAD</h1>
-        <div id="user-display">PRONOS CAN 2025</div>
+        <h1 style="margin:0;">FORUMS WYDAD</h1>
+        <p style="margin:0; font-weight:bold; color:var(--gold);">PRONOS AUTOMATIQUES CAN 2025</p>
     </header>
 
-    <div class="bracket-container">
+    <div class="bracket">
         <div class="round">
             <h2>8èmes de Finale</h2>
             <div class="match">
-                <div class="team" id="m1_1"><img src="https://flagcdn.com/ma.svg"><span>Maroc</span><input type="number" class="score" oninput="up('m1_1','m1_2','q1_t1')"></div>
-                <div class="team" id="m1_2"><img src="https://flagcdn.com/tz.svg"><span>Tanzanie</span><input type="number" class="score" oninput="up('m1_1','m1_2','q1_t1')"></div>
+                <div class="team" id="m1_1"><img src="https://flagcdn.com/ma.svg" style="display:inline"><span>Maroc</span><input type="number" class="score" oninput="up('m1_1','m1_2','q1_t1')"></div>
+                <div class="team" id="m1_2"><img src="https://flagcdn.com/tz.svg" style="display:inline"><span>Tanzanie</span><input type="number" class="score" oninput="up('m1_1','m1_2','q1_t1')"></div>
             </div>
             <div class="match">
-                <div class="team" id="m2_1"><img src="https://flagcdn.com/sn.svg"><span>Sénégal</span><input type="number" class="score" oninput="up('m2_1','m2_2','q1_t2')"></div>
-                <div class="team" id="m2_2"><img src="https://flagcdn.com/sd.svg"><span>Soudan</span><input type="number" class="score" oninput="up('m2_1','m2_2','q1_t2')"></div>
+                <div class="team" id="m2_1"><img src="https://flagcdn.com/sn.svg" style="display:inline"><span>Sénégal</span><input type="number" class="score" oninput="up('m2_1','m2_2','q1_t2')"></div>
+                <div class="team" id="m2_2"><img src="https://flagcdn.com/sd.svg" style="display:inline"><span>Soudan</span><input type="number" class="score" oninput="up('m2_1','m2_2','q1_t2')"></div>
             </div>
             <div class="match">
-                <div class="team" id="m3_1"><img src="https://flagcdn.com/eg.svg"><span>Égypte</span><input type="number" class="score" oninput="up('m3_1','m3_2','q2_t1')"></div>
-                <div class="team" id="m3_2"><img src="https://flagcdn.com/bj.svg"><span>Bénin</span><input type="number" class="score" oninput="up('m3_1','m3_2','q2_t1')"></div>
+                <div class="team" id="m3_1"><img src="https://flagcdn.com/eg.svg" style="display:inline"><span>Égypte</span><input type="number" class="score" oninput="up('m3_1','m3_2','q2_t1')"></div>
+                <div class="team" id="m3_2"><img src="https://flagcdn.com/bj.svg" style="display:inline"><span>Bénin</span><input type="number" class="score" oninput="up('m3_1','m3_2','q2_t1')"></div>
             </div>
             <div class="match">
-                <div class="team" id="m4_1"><img src="https://flagcdn.com/ci.svg"><span>Côte d'Iv.</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
+                <div class="team" id="m4_1"><img src="https://flagcdn.com/ci.svg" style="display:inline"><span>Côte d'Iv.</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
+                <div class="team" id="m4_2"><img src="https://flagcdn.com/bf.svg" style="display:inline"><span>Burkina</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
+            </div>
+            <div class="match">
+                <div class="team" id="m5_1"><img src="https://flagcdn.com/dz.svg" style="display:inline"><span>Algérie</span><input type="number" class="score" oninput="up('m5_1','m5_2','q3_t1')"></div>
+                <div class="team" id="m5_2"><img src="https://flagcdn.com/cd.svg" style="display:inline"><span>RD Congo</span><input type="number" class="score" oninput="up('m5_1','m5_2','q3_t1')"></div>
+            </div>
+            <div class="match">
+                <div class="team" id="m6_1"><img src="https://flagcdn.com/ng.svg" style="display:inline"><span>Nigeria</span><input type="number" class="score" oninput="up('m6_1','m6_2','q3_t2')"></div>
+                <div class="team" id="m6_2"><img src="https://flagcdn.com/ao.svg" style="display:inline"><span>Angola</span><input type="number" class="score" oninput="up('m6_1','m6_2','q3_t2')"></div>
+            </div>
+            <div class="match">
+                <div class="team" id="m7_1"><img src="https://flagcdn.com/tn.svg" style="display:inline"><span>Tunisie</span><input type="number" class="score" oninput="up('m7_1','m7_2','q4_t1')"></div>
+                <div class="team" id="m7_2"><img src="https://flagcdn.com/cm.svg" style="display:inline"><span>Cameroun</span><input type="number" class="score" oninput="up('m7_1','m7_2','q4_t1')"></div>
+            </div>
+            <div class="match">
+                <div class="team" id="m8_1"><img src="https://flagcdn.com/ml.svg" style="display:inline"><span>Mali</span><input type="number" class="score" oninput="up('m8_1','m8_2','q4_t2')"></div>
+                <div class="team" id="m8_2"><img src="https://flagcdn.com/za.svg" style="display:inline"><span>Fr. Sud</span><input type="number" class="score" oninput="up('m8_1','m8_2','q4_t2')"></div>
+            </div>
+        </div>
+
+        <div class="round">
+            <h2>Quarts de Finale</h2>
+            <div class="match">
+                <div class="team" id="q1_t1"><img><span>-</span><input type="number" class="score" oninput="up('q1_t1','q1_t2','d1_t1')"></div>
+                <div class="team" id="q1_t2"><img><span>-</span><input type="number" class="score" oninput="up('q1_t1','q1_t2','d1_t1')"></div>
+            </div>
+            <div class="match">
+                <div class="team" id="q2_t1"><img><span>-</span><input type="number" class="score" oninput="up('q2_t1','q2_t2','d1_t2')"></div>
+                <div class="team" id="q2_t2"><img><span>-</span><input type="number" class="score" oninput="up('q2_t1','q2_t2','d1_t2')"></div>
+            </div>
+            <div class="match">
+                <div class="team" id="q3_t1"><img><span>-</span><input type="number" class="score" oninput="up('q3_t1','q3_t2','d2_t1')"></div>
+                <div class="team" id="q3_t2"><img><span>-</span><input type="number" class="score" oninput="up('q3_t1','q3_t2','d2_t1')"></div>
+            </div>
+            <div class="match">
+                <div class="team" id="q4_t1"><img><span>-</span><input type="number" class="score" oninput="up('q4_t1','q4_t2','d2_t2')"></div>
+                <div class="team" id="q4_t2"><img><span>-</span><input type="number" class="score" oninput="up('q4_t1','q4_t2','d2_t2')"></div>
+            </div>
+        </div>
+
+        <div class="round">
+            <h2>Demi-Finales</h2>
+            <div class="match">
+                <div class="team" id="d1_t1"><img><span>-</span><input type="number" class="score" oninput="up('d1_t1','d1_t2','f_t1')"></div>
+                <div class="team" id="d1_t2"><img><span>-</span><input type="number" class="score" oninput="up('d1_t
 
