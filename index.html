@@ -3,24 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forums Wydad - Pronos AFCON 2025</title>
+    <title>Forums Wydad - Tableau Final CAN 2025</title>
     <style>
         :root { --wac-red: #e30613; --gold: #FFD700; --dark: #121212; }
         body { background: var(--dark); color: white; font-family: 'Arial', sans-serif; margin: 0; text-align: center; }
         header { background: var(--wac-red); padding: 15px; border-bottom: 4px solid var(--gold); position: sticky; top: 0; z-index: 100; }
-        header h1 { margin: 0; font-size: 1.5em; }
         #login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-        .login-box { background: #222; padding: 30px; border-radius: 15px; border: 2px solid var(--wac-red); width: 80%; }
-        .bracket-container { display: flex; gap: 20px; padding: 20px; overflow-x: auto; align-items: flex-start; }
+        .login-box { background: #222; padding: 30px; border-radius: 15px; border: 2px solid var(--wac-red); width: 85%; max-width: 400px; }
+        .bracket-container { display: flex; gap: 20px; padding: 20px; overflow-x: auto; align-items: flex-start; text-align: left; }
         .round { min-width: 260px; flex-shrink: 0; }
-        .round h2 { color: var(--wac-red); font-size: 1.1em; background: #222; padding: 10px; border-radius: 5px; }
-        .match { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 10px; margin-bottom: 15px; }
-        .team { display: flex; align-items: center; justify-content: space-between; margin: 5px 0; min-height: 30px; }
-        .team img { width: 25px; height: 18px; border-radius: 2px; display: none; } /* Caché si vide */
-        .team span { flex-grow: 1; text-align: left; margin-left: 10px; font-size: 0.9em; }
-        .score { width: 35px; background: #333; border: 1px solid var(--wac-red); color: white; text-align: center; border-radius: 4px; }
-        .winner-box { border: 2px solid var(--gold) !important; background: #000 !important; }
-        button { background: var(--wac-red); color: white; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; margin: 20px; }
+        .round h2 { color: var(--gold); font-size: 1.1em; background: rgba(227, 6, 19, 0.2); padding: 10px; border-radius: 5px; text-align: center; }
+        .match { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 10px; margin-bottom: 15px; box-shadow: 0 4px 6px rgba(0,0,0,0.3); }
+        .team { display: flex; align-items: center; justify-content: space-between; margin: 5px 0; min-height: 35px; }
+        .team img { width: 25px; height: 18px; border-radius: 2px; margin-right: 10px; background: #333; }
+        .team span { flex-grow: 1; font-size: 0.9em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .score { width: 35px; background: #333; border: 1px solid var(--wac-red); color: white; text-align: center; border-radius: 4px; font-weight: bold; }
+        .champion-box { border: 2px solid var(--gold); background: linear-gradient(145deg, #222, #000); text-align: center; padding: 20px; border-radius: 15px; }
+        button { background: var(--wac-red); color: white; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; margin: 20px; }
     </style>
 </head>
 <body>
@@ -29,115 +28,46 @@
         <div class="login-box">
             <h2 style="color: var(--wac-red);">FORUMS WYDAD</h2>
             <p>Pseudo Wydadi :</p>
-            <input type="text" id="username" style="padding: 10px; width: 80%;">
+            <input type="text" id="username" placeholder="Ton pseudo..." style="padding: 12px; width: 80%; border-radius: 8px; border: none;">
             <br><br>
-            <button onclick="login()">ENTRER</button>
+            <button onclick="login()">ACCÉDER AU TABLEAU</button>
         </div>
     </div>
 
     <header>
-        <h1>FORUMS WYDAD</h1>
-        <div id="user-display">🏆 AFCON 2025 🏆</div>
+        <h1 style="margin:0">FORUMS WYDAD</h1>
+        <div id="user-display" style="font-size: 0.9em; color: var(--gold); margin-top:5px;">CAN 2025 - MAROC</div>
     </header>
 
     <div class="bracket-container">
         <div class="round">
             <h2>8èmes de Finale</h2>
             <div class="match">
-                <div class="team" id="t1"><img src="https://flagcdn.com/ma.svg" style="display:inline"><span>Maroc</span><input type="number" class="score" oninput="updateBracket(1,2,'q1_1')"></div>
-                <div class="team" id="t2"><img src="https://flagcdn.com/tz.svg" style="display:inline"><span>Tanzanie</span><input type="number" class="score" oninput="updateBracket(1,2,'q1_1')"></div>
+                <div class="team" id="m1_1"><img src="https://flagcdn.com/ma.svg"><span>Maroc</span><input type="number" class="score" oninput="up('m1_1','m1_2','q1_t1')"></div>
+                <div class="team" id="m1_2"><img src="https://flagcdn.com/tz.svg"><span>Tanzanie</span><input type="number" class="score" oninput="up('m1_1','m1_2','q1_t1')"></div>
             </div>
             <div class="match">
-                <div class="team" id="t3"><img src="https://flagcdn.com/sn.svg" style="display:inline"><span>Sénégal</span><input type="number" class="score" oninput="updateBracket(3,4,'q1_2')"></div>
-                <div class="team" id="t4"><img src="https://flagcdn.com/sd.svg" style="display:inline"><span>Soudan</span><input type="number" class="score" oninput="updateBracket(3,4,'q1_2')"></div>
+                <div class="team" id="m2_1"><img src="https://flagcdn.com/sn.svg"><span>Sénégal</span><input type="number" class="score" oninput="up('m2_1','m2_2','q1_t2')"></div>
+                <div class="team" id="m2_2"><img src="https://flagcdn.com/sd.svg"><span>Soudan</span><input type="number" class="score" oninput="up('m2_1','m2_2','q1_t2')"></div>
             </div>
             <div class="match">
-                <div class="team" id="t5"><img src="https://flagcdn.com/eg.svg" style="display:inline"><span>Égypte</span><input type="number" class="score" oninput="updateBracket(5,6,'q2_1')"></div>
-                <div class="team" id="t6"><img src="https://flagcdn.com/bj.svg" style="display:inline"><span>Bénin</span><input type="number" class="score" oninput="updateBracket(5,6,'q2_1')"></div>
+                <div class="team" id="m3_1"><img src="https://flagcdn.com/eg.svg"><span>Égypte</span><input type="number" class="score" oninput="up('m3_1','m3_2','q2_t1')"></div>
+                <div class="team" id="m3_2"><img src="https://flagcdn.com/bj.svg"><span>Bénin</span><input type="number" class="score" oninput="up('m3_1','m3_2','q2_t1')"></div>
             </div>
             <div class="match">
-                <div class="team" id="t7"><img src="https://flagcdn.com/ci.svg" style="display:inline"><span>Côte d'Iv.</span><input type="number" class="score" oninput="updateBracket(7,8,'q2_2')"></div>
-                <div class="team" id="t8"><img src="https://flagcdn.com/bf.svg" style="display:inline"><span>Burkina</span><input type="number" class="score" oninput="updateBracket(7,8,'q2_2')"></div>
-            </div>
-        </div>
-
-        <div class="round">
-            <h2>Quarts</h2>
-            <div class="match">
-                <div class="team" id="q1_1"><img><span>Attente...</span><input type="number" class="score" oninput="updateSemi('q1_1','q1_2','d1_1')"></div>
-                <div class="team" id="q1_2"><img><span>Attente...</span><input type="number" class="score" oninput="updateSemi('q1_1','q1_2','d1_1')"></div>
+                <div class="team" id="m4_1"><img src="https://flagcdn.com/ci.svg"><span>Côte d'Iv.</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
+                <div class="team" id="m4_2"><img src="https://flagcdn.com/bf.svg"><span>Burkina</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
             </div>
             <div class="match">
-                <div class="team" id="q2_1"><img><span>Attente...</span><input type="number" class="score" oninput="updateSemi('q2_1','q2_2','d1_2')"></div>
-                <div class="team" id="q2_2"><img><span>Attente...</span><input type="number" class="score" oninput="updateSemi('q2_1','q2_2','d1_2')"></div>
+                <div class="team" id="m5_1"><img src="https://flagcdn.com/dz.svg"><span>Algérie</span><input type="number" class="score" oninput="up('m5_1','m5_2','q3_t1')"></div>
+                <div class="team" id="m5_2"><img src="https://flagcdn.com/cd.svg"><span>RD Congo</span><input type="number" class="score" oninput="up('m5_1','m5_2','q3_t1')"></div>
             </div>
-        </div>
-
-        <div class="round">
-            <h2>Demis</h2>
             <div class="match">
-                <div class="team" id="d1_1"><img><span>Attente...</span><input type="number" class="score" oninput="updateFinal('d1_1','d1_2','champion')"></div>
-                <div class="team" id="d1_2"><img><span>Attente...</span><input type="number" class="score" oninput="updateFinal('d1_1','d1_2','champion')"></div>
+                <div class="team" id="m6_1"><img src="https://flagcdn.com/ng.svg"><span>Nigeria</span><input type="number" class="score" oninput="up('m6_1','m6_2','q3_t2')"></div>
+                <div class="team" id="m6_2"><img src="https://flagcdn.com/ao.svg"><span>Angola</span><input type="number" class="score" oninput="up('m6_1','m6_2','q3_t2')"></div>
             </div>
-        </div>
-
-        <div class="round">
-            <h2>Champion</h2>
-            <div class="match winner-box" id="champion">
-                <p>🏆</p>
-                <img><span style="display:block; font-weight:bold">?</span>
+            <div class="match">
+                <div class="team" id="m7_1"><img src="https://flagcdn.com/tn.svg"><span>Tunisie</span><input type="number" class="score" oninput="up('m7_1','m7_2','q4_t1')"></div>
+                <div class="team" id="m7_2"><img src="https://flagcdn.com/cm.svg"><span>Cameroun</span><input type="number" class="score" oninput="up('m7_1','m7_2','q4_t1')"></div>
             </div>
-        </div>
-    </div>
-
-    <button onclick="window.print()">CAPTURER MES PRONOS</button>
-
-    <script>
-        function login() {
-            const name = document.getElementById('username').value;
-            if(name) { localStorage.setItem('wUser', name); location.reload(); }
-        }
-        window.onload = () => {
-            const u = localStorage.getItem('wUser');
-            if(u) { 
-                document.getElementById('login-screen').style.display='none';
-                document.getElementById('user-display').innerText = "Wydadi: " + u;
-            }
-        }
-
-        function updateBracket(id1, id2, targetId) {
-            const s1 = parseInt(document.querySelector(`#t${id1} input`).value) || 0;
-            const s2 = parseInt(document.querySelector(`#t${id2} input`).value) || 0;
-            const target = document.getElementById(targetId);
-            const winner = s1 >= s2 ? document.getElementById(`t${id1}`) : document.getElementById(`t${id2}`);
-            
-            target.querySelector('span').innerText = winner.querySelector('span').innerText;
-            target.querySelector('img').src = winner.querySelector('img').src;
-            target.querySelector('img').style.display = "inline";
-        }
-
-        function updateSemi(id1, id2, targetId) {
-            const s1 = parseInt(document.querySelector(`#${id1} input`).value) || 0;
-            const s2 = parseInt(document.querySelector(`#${id2} input`).value) || 0;
-            const target = document.getElementById(targetId);
-            const winner = s1 >= s2 ? document.getElementById(id1) : document.getElementById(id2);
-            
-            target.querySelector('span').innerText = winner.querySelector('span').innerText;
-            target.querySelector('img').src = winner.querySelector('img').src;
-            target.querySelector('img').style.display = "inline";
-        }
-
-        function updateFinal(id1, id2, targetId) {
-            const s1 = parseInt(document.querySelector(`#${id1} input`).value) || 0;
-            const s2 = parseInt(document.querySelector(`#${id2} input`).value) || 0;
-            const target = document.getElementById(targetId);
-            const winner = s1 >= s2 ? document.getElementById(id1) : document.getElementById(id2);
-            
-            target.querySelector('span').innerText = winner.querySelector('span').innerText;
-            target.querySelector('img').src = winner.querySelector('img').src;
-            target.querySelector('img').style.display = "inline";
-        }
-    </script>
-</body>
-</html>
 
