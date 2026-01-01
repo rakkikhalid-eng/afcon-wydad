@@ -7,32 +7,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         :root { --wac-red: #e30613; --gold: #FFD700; --dark: #121212; }
-        body { background: var(--dark); color: white; font-family: sans-serif; margin: 0; text-align: center; overflow-x: hidden; }
+        body { background: var(--dark); color: white; font-family: sans-serif; margin: 0; padding-bottom: 50px; }
         
-        /* Conteneur pour la capture : on s'assure qu'il prend toute la largeur du contenu */
-        #capture-area { background: var(--dark); padding-bottom: 30px; display: inline-block; min-width: 100%; }
+        /* Zone de capture verticale */
+        #capture-area { background: var(--dark); width: 100%; display: flex; flex-direction: column; align-items: center; }
         
-        header { background: var(--wac-red); padding: 15px; border-bottom: 4px solid var(--gold); }
-        header h1 { margin: 0; font-size: 1.4em; text-transform: uppercase; }
-        #pseudo-display { color: var(--gold); font-weight: bold; font-size: 1.2em; margin-top: 5px; }
+        header { background: var(--wac-red); width: 100%; padding: 15px 0; border-bottom: 4px solid var(--gold); margin-bottom: 20px; }
+        header h1 { margin: 0; font-size: 1.3em; text-transform: uppercase; text-align: center; }
+        #pseudo-display { color: var(--gold); font-weight: bold; font-size: 1.1em; margin-top: 5px; text-align: center; }
 
         #login-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-        .login-box { background: #222; padding: 30px; border-radius: 15px; border: 2px solid var(--wac-red); width: 85%; max-width: 350px; }
+        .login-box { background: #222; padding: 30px; border-radius: 15px; border: 2px solid var(--wac-red); width: 85%; max-width: 350px; text-align: center; }
         
-        /* Alignement horizontal de toutes les étapes */
-        .bracket-container { display: flex; gap: 30px; padding: 20px; align-items: flex-start; text-align: left; }
-        .round { min-width: 240px; }
-        .round h2 { color: var(--gold); font-size: 0.9em; background: rgba(227, 6, 19, 0.3); padding: 10px; border-radius: 5px; text-align: center; text-transform: uppercase; margin-bottom: 20px; }
+        /* Structure verticale pour mobile */
+        .bracket-container { display: flex; flex-direction: column; gap: 30px; width: 90%; max-width: 400px; }
+        .round { width: 100%; }
+        .round h2 { color: var(--gold); font-size: 1em; background: rgba(227, 6, 19, 0.3); padding: 10px; border-radius: 5px; text-align: center; text-transform: uppercase; border: 1px solid #444; }
         
-        .match { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 10px; margin-bottom: 15px; border-left: 4px solid var(--wac-red); }
-        .team { display: flex; align-items: center; justify-content: space-between; margin: 5px 0; min-height: 35px; }
-        .team img { width: 25px; height: 18px; border-radius: 2px; margin-right: 10px; }
-        .team span { flex-grow: 1; font-size: 0.85em; font-weight: bold; }
-        .score { width: 35px; background: #333; border: 1px solid var(--wac-red); color: white; text-align: center; border-radius: 4px; font-weight: bold; padding: 5px; }
+        .match { background: #1e1e1e; border: 1px solid #333; border-radius: 8px; padding: 12px; margin-bottom: 12px; border-left: 4px solid var(--wac-red); }
+        .team { display: flex; align-items: center; justify-content: space-between; margin: 8px 0; }
+        .team img { width: 28px; height: 20px; border-radius: 2px; margin-right: 12px; }
+        .team span { flex-grow: 1; font-size: 0.9em; font-weight: bold; text-align: left; }
+        .score { width: 40px; background: #333; border: 1px solid var(--wac-red); color: white; text-align: center; border-radius: 4px; font-weight: bold; padding: 6px; font-size: 1em; }
         
-        .champion-box { border: 3px solid var(--gold); background: #000; text-align: center; padding: 25px; border-radius: 15px; margin-top: 20px; }
+        .champion-box { border: 3px solid var(--gold); background: #000; text-align: center; padding: 25px; border-radius: 15px; margin: 20px 0; width: 100%; box-sizing: border-box; }
+        .champion-box img { width: 60px; margin: 0 auto 10px auto; border-radius: 4px; }
         
-        .btn-share { background: #25D366; color: white; border: none; padding: 15px 40px; border-radius: 30px; font-weight: bold; cursor: pointer; margin: 25px; font-size: 1.2em; box-shadow: 0 5px 15px rgba(0,0,0,0.6); position: sticky; left: 50%; transform: translateX(-50%); }
+        .btn-share { background: #25D366; color: white; border: none; padding: 16px; border-radius: 30px; font-weight: bold; cursor: pointer; width: 80%; max-width: 300px; font-size: 1.1em; margin: 30px auto; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
@@ -70,7 +71,7 @@
                 </div>
                 <div class="match">
                     <div class="team" id="m4_1"><img src="https://flagcdn.com/ci.svg"><span>Côte d'Iv.</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
-                    <div class="team" id="m4_2"><img src="https://flagcdn.com/bf.svg"><span>Burkina Faso</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
+                    <div class="team" id="m4_2"><img src="https://flagcdn.com/bf.svg"><span>Burkina</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
                 </div>
                 <div class="match">
                     <div class="team" id="m5_1"><img src="https://flagcdn.com/za.svg"><span>Af. du Sud</span><input type="number" class="score" oninput="up('m5_1','m5_2','q3_t1')"></div>
@@ -91,7 +92,7 @@
             </div>
 
             <div class="round">
-                <h2>Quarts</h2>
+                <h2>Quarts de Finale</h2>
                 <div class="match">
                     <div class="team" id="q1_t1"><img style="display:none"><span>-</span><input type="number" class="score" oninput="up('q1_t1','q1_t2','d1_t1')"></div>
                     <div class="team" id="q1_t2"><img style="display:none"><span>-</span><input type="number" class="score" oninput="up('q1_t1','q1_t2','d1_t1')"></div>
@@ -123,15 +124,15 @@
             </div>
 
             <div class="round">
-                <h2>Champion</h2>
+                <h2>Finale & Vainqueur</h2>
                 <div class="match">
                     <div class="team" id="f1_t1"><img style="display:none"><span>-</span><input type="number" class="score" oninput="up('f1_t1','f1_t2','champ')"></div>
                     <div class="team" id="f1_t2"><img style="display:none"><span>-</span><input type="number" class="score" oninput="up('f1_t1','f1_t2','champ')"></div>
                 </div>
                 <div class="champion-box" id="champ">
-                    <p style="color:var(--gold); font-size: 0.8em; margin:0 0 5px 0;">🏆 VAINQUEUR 🏆</p>
-                    <img src="" style="width:55px; display:none; margin: 0 auto 5px auto; border-radius:3px;">
-                    <div style="font-weight:bold; font-size:1.2em;">?</div>
+                    <p style="color:var(--gold); font-size: 0.9em; margin:0 0 10px 0;">🏆 CHAMPION 🏆</p>
+                    <img src="" style="display:none;">
+                    <div style="font-weight:bold; font-size:1.4em; color:white;">?</div>
                 </div>
             </div>
         </div>
@@ -143,10 +144,8 @@
         function entrer() {
             var pseudo = document.getElementById('username').value;
             if(pseudo.trim().length > 0) {
-                document.getElementById('pseudo-display').innerText = "Wydadi : " + pseudo;
+                document.getElementById('pseudo-display').innerText = "Membre : " + pseudo;
                 document.getElementById('login-screen').style.display = 'none';
-            } else {
-                alert("Entre ton pseudo !");
             }
         }
 
@@ -156,43 +155,32 @@
             var target = document.getElementById(targetId);
             var winner = (s1 >= s2) ? document.getElementById(id1) : document.getElementById(id2);
             
-            target.querySelector('span').innerText = winner.querySelector('span').innerText;
-            var tImg = target.querySelector('img');
-            tImg.src = winner.querySelector('img').src;
-            tImg.style.display = "inline-block";
-            
+            var winnerName = winner.querySelector('span').innerText;
+            var winnerFlag = winner.querySelector('img').src;
+
             if(targetId === "champ") {
-                target.querySelector('div').innerText = winner.querySelector('span').innerText;
-                tImg.style.display = "block";
+                target.querySelector('div').innerText = winnerName;
+                var cImg = target.querySelector('img');
+                cImg.src = winnerFlag;
+                cImg.style.display = "block";
+            } else {
+                target.querySelector('span').innerText = winnerName;
+                var tImg = target.querySelector('img');
+                tImg.src = winnerFlag;
+                tImg.style.display = "inline-block";
             }
         }
 
         async function partager() {
             const area = document.getElementById('capture-area');
-            // On utilise window.scrollTo pour être sûr que tout est visible au moment de la capture
-            window.scrollTo(0,0);
-            
-            html2canvas(area, {
-                useCORS: true,
-                backgroundColor: "#121212",
-                width: area.scrollWidth, // Capture toute la largeur réelle
-                height: area.scrollHeight, // Capture toute la hauteur réelle
-                x: 0,
-                y: 0,
-                scrollX: 0,
-                scrollY: 0
-            }).then(async (canvas) => {
+            html2canvas(area, { useCORS: true, backgroundColor: "#121212" }).then(async (canvas) => {
                 canvas.toBlob(async (blob) => {
-                    const file = new File([blob], 'prono-can-wydad.png', { type: 'image/png' });
+                    const file = new File([blob], 'mon-prono.png', { type: 'image/png' });
                     if (navigator.share) {
                         try {
-                            await navigator.share({
-                                title: 'Mon Prono CAN 2025',
-                                files: [file]
-                            });
+                            await navigator.share({ files: [file] });
                         } catch (err) { console.log("Partage annulé"); }
                     } else {
-                        // Téléchargement si partage non supporté
                         const link = document.createElement('a');
                         link.download = 'mon-prono-wydad.png';
                         link.href = URL.createObjectURL(blob);
