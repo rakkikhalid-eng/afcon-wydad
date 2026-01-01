@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forums Wydad - Tableau CAN 2025</title>
+    <title>Forums Wydad - AFCON 2025</title>
     <style>
         :root { --wac-red: #e30613; --gold: #FFD700; --dark: #121212; }
         body { background: var(--dark); color: white; font-family: sans-serif; margin: 0; text-align: center; }
@@ -24,7 +24,7 @@
         .team span { flex-grow: 1; font-size: 0.85em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .score { width: 35px; background: #333; border: 1px solid var(--wac-red); color: white; text-align: center; border-radius: 4px; font-weight: bold; padding: 4px; }
         
-        .champion-box { border: 2px solid var(--gold); background: #000; text-align: center; padding: 20px; border-radius: 15px; }
+        .champion-box { border: 2px solid var(--gold); background: #000; text-align: center; padding: 20px; border-radius: 15px; margin-top: 10px; }
         button { background: var(--wac-red); color: white; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; margin-top: 10px; }
     </style>
 </head>
@@ -42,43 +42,43 @@
 
     <header>
         <h1>FORUMS WYDAD</h1>
-        <div id="pseudo-display">PRONOS CAN 2025</div>
+        <div id="pseudo-display">ROAD TO FINAL - CAN 2025</div>
     </header>
 
     <div class="bracket-container">
         <div class="round">
             <h2>8èmes de Finale</h2>
             <div class="match">
-                <div class="team" id="m1_1"><img src="https://flagcdn.com/ma.svg"><span>Maroc</span><input type="number" class="score" oninput="up('m1_1','m1_2','q1_t1')"></div>
-                <div class="team" id="m1_2"><img src="https://flagcdn.com/tz.svg"><span>Tanzanie</span><input type="number" class="score" oninput="up('m1_1','m1_2','q1_t1')"></div>
+                <div class="team" id="m1_1"><img src="https://flagcdn.com/ml.svg"><span>Mali</span><input type="number" class="score" oninput="up('m1_1','m1_2','q1_t1')"></div>
+                <div class="team" id="m1_2"><img src="https://flagcdn.com/tn.svg"><span>Tunisie</span><input type="number" class="score" oninput="up('m1_1','m1_2','q1_t1')"></div>
             </div>
             <div class="match">
-                <div class="team" id="m2_1"><img src="https://flagcdn.com/dz.svg"><span>Algérie</span><input type="number" class="score" oninput="up('m2_1','m2_2','q1_t2')"></div>
-                <div class="team" id="m2_2"><img src="https://flagcdn.com/cd.svg"><span>RD Congo</span><input type="number" class="score" oninput="up('m2_1','m2_2','q1_t2')"></div>
+                <div class="team" id="m2_1"><img src="https://flagcdn.com/sn.svg"><span>Sénégal</span><input type="number" class="score" oninput="up('m2_1','m2_2','q1_t2')"></div>
+                <div class="team" id="m2_2"><img src="https://flagcdn.com/sd.svg"><span>Soudan</span><input type="number" class="score" oninput="up('m2_1','m2_2','q1_t2')"></div>
             </div>
             <div class="match">
                 <div class="team" id="m3_1"><img src="https://flagcdn.com/eg.svg"><span>Égypte</span><input type="number" class="score" oninput="up('m3_1','m3_2','q2_t1')"></div>
                 <div class="team" id="m3_2"><img src="https://flagcdn.com/bj.svg"><span>Bénin</span><input type="number" class="score" oninput="up('m3_1','m3_2','q2_t1')"></div>
             </div>
             <div class="match">
-                <div class="team" id="m4_1"><img src="https://flagcdn.com/ci.svg"><span>Côte d'Iv.</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
-                <div class="team" id="m4_2"><img src="https://flagcdn.com/bf.svg"><span>Burkina</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
+                <div class="team" id="m4_1"><img src="https://flagcdn.com/ci.svg"><span>Côte d'Ivoire</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
+                <div class="team" id="m4_2"><img src="https://flagcdn.com/bf.svg"><span>Burkina Faso</span><input type="number" class="score" oninput="up('m4_1','m4_2','q2_t2')"></div>
             </div>
             <div class="match">
-                <div class="team" id="m5_1"><img src="https://flagcdn.com/sn.svg"><span>Sénégal</span><input type="number" class="score" oninput="up('m5_1','m5_2','q3_t1')"></div>
-                <div class="team" id="m5_2"><img src="https://flagcdn.com/sd.svg"><span>Soudan</span><input type="number" class="score" oninput="up('m5_1','m5_2','q3_t1')"></div>
+                <div class="team" id="m5_1"><img src="https://flagcdn.com/za.svg"><span>Afrique du Sud</span><input type="number" class="score" oninput="up('m5_1','m5_2','q3_t1')"></div>
+                <div class="team" id="m5_2"><img src="https://flagcdn.com/cm.svg"><span>Cameroun</span><input type="number" class="score" oninput="up('m5_1','m5_2','q3_t1')"></div>
             </div>
             <div class="match">
-                <div class="team" id="m6_1"><img src="https://flagcdn.com/ng.svg"><span>Nigeria</span><input type="number" class="score" oninput="up('m6_1','m6_2','q3_t2')"></div>
-                <div class="team" id="m6_2"><img src="https://flagcdn.com/ao.svg"><span>Angola</span><input type="number" class="score" oninput="up('m6_1','m6_2','q3_t2')"></div>
+                <div class="team" id="m6_1"><img src="https://flagcdn.com/ma.svg"><span>Maroc</span><input type="number" class="score" oninput="up('m6_1','m6_2','q3_t2')"></div>
+                <div class="team" id="m6_2"><img src="https://flagcdn.com/tz.svg"><span>Tanzanie</span><input type="number" class="score" oninput="up('m6_1','m6_2','q3_t2')"></div>
             </div>
             <div class="match">
-                <div class="team" id="m7_1"><img src="https://flagcdn.com/tn.svg"><span>Tunisie</span><input type="number" class="score" oninput="up('m7_1','m7_2','q4_t1')"></div>
-                <div class="team" id="m7_2"><img src="https://flagcdn.com/cm.svg"><span>Cameroun</span><input type="number" class="score" oninput="up('m7_1','m7_2','q4_t1')"></div>
+                <div class="team" id="m7_1"><img src="https://flagcdn.com/dz.svg"><span>Algérie</span><input type="number" class="score" oninput="up('m7_1','m7_2','q4_t1')"></div>
+                <div class="team" id="m7_2"><img src="https://flagcdn.com/cd.svg"><span>RD Congo</span><input type="number" class="score" oninput="up('m7_1','m7_2','q4_t1')"></div>
             </div>
             <div class="match">
-                <div class="team" id="m8_1"><img src="https://flagcdn.com/ml.svg"><span>Mali</span><input type="number" class="score" oninput="up('m8_1','m8_2','q4_t2')"></div>
-                <div class="team" id="m8_2"><img src="https://flagcdn.com/za.svg"><span>Fr. Sud</span><input type="number" class="score" oninput="up('m8_1','m8_2','q4_t2')"></div>
+                <div class="team" id="m8_1"><img src="https://flagcdn.com/ng.svg"><span>Nigeria</span><input type="number" class="score" oninput="up('m8_1','m8_2','q4_t2')"></div>
+                <div class="team" id="m8_2"><img src="https://flagcdn.com/mz.svg"><span>Mozambique</span><input type="number" class="score" oninput="up('m8_1','m8_2','q4_t2')"></div>
             </div>
         </div>
 
@@ -128,7 +128,7 @@
         </div>
     </div>
 
-    <button onclick="window.print()">TÉLÉCHARGER MON PRONO</button>
+    <button onclick="window.print()" style="margin-bottom:30px;">TÉLÉCHARGER MON PRONO</button>
 
     <script>
         function entrer() {
@@ -156,8 +156,9 @@
                 target.querySelector('img').style.display = "block";
             } else {
                 target.querySelector('span').innerText = name;
-                target.querySelector('img').src = flag;
-                target.querySelector('img').style.display = "inline-block";
+                var targetImg = target.querySelector('img');
+                targetImg.src = flag;
+                targetImg.style.display = "inline-block";
             }
         }
     </script>
